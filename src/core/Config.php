@@ -94,7 +94,7 @@ class Config {
     }
 
     public static function init(){
-        $path = rtrim(Factory::getRootPath(),"/") . "/rumtime/";
+        $path = rtrim(Factory::getRootPath(),"/") . "/runtime/";
 
         if(empty(self::$config["log"]["path"])){
             $logPath = $path . "log/";
