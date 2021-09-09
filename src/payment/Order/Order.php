@@ -151,11 +151,19 @@ class Order extends BasePayment {
     }
 
     /**
-     * 获取微信支付通知回复内容
+     * 微信支付通知回复内容
      * @return string
      */
     public function getNotifySuccessReply(){
         return Response::arr2xml(['return_code' => 'SUCCESS', 'return_msg' => 'OK']);
+    }
+
+    /**
+     * 微信支付通知回复内容
+     * @return string
+     */
+    public function getNotifyErrorReply(){
+        return Response::arr2xml(['return_code' => 'FAIL', 'return_msg' => 'ERROR']);
     }
 
 }
