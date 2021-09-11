@@ -11,12 +11,19 @@ namespace xzncit\delivery;
 
 use xzncit\core\Service;
 
+/**
+ * class Payment
+ *
+ * @property \xzncit\delivery\Aliyun\Aliyun                                         $aliyun
+ */
 class Delivery extends Service {
 
     /**
      * @var string[]
      */
-    protected $providers = [];
+    protected $providers = [
+        "aliyun"    => Aliyun\ProviderService::class
+    ];
 
     /**
      * Wechat constructor.
