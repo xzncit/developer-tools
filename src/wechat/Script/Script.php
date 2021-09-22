@@ -22,7 +22,7 @@ class Script extends App {
      */
     public function deleteTicket($type = 'jsapi'){
         $appid = $this->app->config["appid"];
-        Cache::delete("{$appid}_ticket_{$type}");
+        Cache::create()->delete("{$appid}_ticket_{$type}");
     }
 
     /**
@@ -44,7 +44,7 @@ class Script extends App {
         }
 
         $ticket = $result['ticket'];
-        Cache::set($cacheName, $ticket, 5000);
+        Cache::create()->set($cacheName, $ticket, 5000);
         return $ticket;
     }
 
