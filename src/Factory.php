@@ -22,7 +22,7 @@ class Factory {
      * Current version of program
      * @var string
      */
-    public static $version = "0.1.9";
+    public static $version = "0.2.0";
 
     /**
      * @param $name
@@ -32,7 +32,7 @@ class Factory {
      * @throws ConfigNotFoundException
      */
     public static function create($name,array $options){
-        $obj = "\\xzncit\\" . strtolower($name) . "\\" . $name;
+        $obj = "\\xzncit\\" . (substr($name,0,4)=="Mini" ? "mini" : strtolower($name)) . "\\" . $name;
         if(!class_exists($obj)){
             throw new ClassNotFoundException("class [$name] does not exist",0);
         }
