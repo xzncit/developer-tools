@@ -12,6 +12,7 @@ namespace xzncit\wechat\Script;
 use xzncit\core\App;
 use xzncit\core\http\HttpClient;
 use xzncit\core\Cache;
+use xzncit\core\Utils;
 
 class Script extends App {
 
