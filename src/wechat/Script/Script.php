@@ -33,7 +33,7 @@ class Script extends App {
     public function getTicket($type = 'jsapi'){
         $appid = $this->app->config["appid"];
         $cacheName = "{$appid}_ticket_{$type}";
-        $ticket = Cache::get($cacheName);
+        $ticket = Cache::create()->get($cacheName);
         if (!empty($ticket)) {
             return $ticket;
         }
