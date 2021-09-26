@@ -29,6 +29,8 @@ class Response {
                 return self::json2arr($content);
             case "object":
                 return self::json2obj($content);
+            case "xml":
+                return self::xml2arr($content);
             case "text":
                 return $content;
         }

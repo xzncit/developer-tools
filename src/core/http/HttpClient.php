@@ -228,7 +228,12 @@ class HttpClient {
      * @throws \Exception
      */
     public function toArray(){
-        return Response::getResult($this->response->getBody()->getContents(),"array");
+        $content = $this->response->getBody()->getContents();
+        if(is_null(json_decode($content))){
+            return Response::getResult($content,"xml");
+        }
+
+        return Response::getResult($content,"array");
     }
 
     /**
