@@ -18,9 +18,10 @@ class Config {
      * @var array $config
      */
     private static $config = [
-        'http' => [
-            'base_uri' => 'https://api.weixin.qq.com/',
-            'timeout' => 30.0
+        "mode"=>"wechat",
+        "http" => [
+            "base_uri" => "https://api.weixin.qq.com/",
+            "timeout" => 30.0
         ],
         "token"=>"",
         "appid"=>"",

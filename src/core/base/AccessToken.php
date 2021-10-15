@@ -31,7 +31,7 @@ class AccessToken {
 
     public static function set(){
         $config = Config::get();
-        return HttpClient::create()->get("cgi-bin/token",[
+        return HttpClient::create()->get(self::getUri($config["mode"]),[
             "grant_type"=>"client_credential",
             "appid"=>$config["appid"],
             "secret"=>$config["appsecret"],
@@ -40,6 +40,15 @@ class AccessToken {
 
     public static function delete(){
         Cache::create()->delete(self::getCacheName());
+    }
+
+    private static function getUri($mode="wechat"){
+        switch($mode){
+            case "wechat":
+                return "cgi-bin/token";
+            case "microapp":
+                return "api/apps/v2/token";
+        }
     }
 
     private static function getCacheName(){

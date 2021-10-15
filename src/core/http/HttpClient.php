@@ -22,6 +22,7 @@ class HttpClient {
     public $response = "";
 
     private function __construct(){
+        print_r(Config::get("http"));
         $this->client = new Client(Config::get("http"));
     }
 
@@ -90,14 +91,14 @@ class HttpClient {
      * POST提交JSON数据方法
      * @param string $uri
      * @param array $params
+     * @param array $headers
      * @return $this
      */
-    public function postJson($uri,array $params=[]){
+    public function postJson($uri,array $params=[],$headers=[]){
         $array = $this->parseUrl($uri);
+        $headers["Content-Type"] = "application/json";
         $this->response = $this->client->request('POST',$array["path"],[
-            'headers'=>[
-                'Content-Type' => 'application/json'
-            ],
+            'headers'=>$headers,
             'verify'=>false,
             'query'=>$this->params($array["query"]),
             'body'=>json_encode($params,JSON_UNESCAPED_UNICODE)

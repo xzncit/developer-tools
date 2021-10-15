@@ -12,6 +12,7 @@ use xzncit\core\exception\ConfigNotFoundException;
  * @package xzncit
  * @method static \xzncit\wechat\Wechat Wechat(array $config)
  * @method static \xzncit\mini\MiniProgram MiniProgram(array $config)
+ * @method static \xzncit\microapp\MicroApp MicroApp(array $config)
  * @method static \xzncit\payment\Payment Payment(array $config)
  * @method static \xzncit\sms\Sms Sms(array $config)
  * @method static \xzncit\delivery\Delivery Delivery(array $config)
@@ -22,7 +23,7 @@ class Factory {
      * Current version of program
      * @var string
      */
-    public static $version = "0.2.1";
+    public static $version = "0.2.2";
 
     /**
      * @param $name
