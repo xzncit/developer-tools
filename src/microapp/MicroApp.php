@@ -22,6 +22,8 @@ use xzncit\core\Service;
  * @property \xzncit\microapp\Other\Other                                         $other
  * @property \xzncit\microapp\Subscribe\Subscribe                                 $subscribe
  * @property \xzncit\microapp\Live\Live                                           $live
+ * @property \xzncit\microapp\Payment\Payment                                     $payment
+ * @property \xzncit\microapp\Payment\Merchant\Merchant                           $merchant
  *
  */
 class MicroApp extends Service{
@@ -36,11 +38,13 @@ class MicroApp extends Service{
         "security"               =>      Security\ProviderService::class,
         "other"                  =>      Other\ProviderService::class,
         "subscribe"              =>      Subscribe\ProviderService::class,
-        "live"                   =>      Live\ProviderService::class
+        "live"                   =>      Live\ProviderService::class,
+        "payment"                =>      Payment\ProviderService::class,
+        "merchant"               =>      Payment\Merchant\ProviderService::class,
     ];
 
     /**
-     * Wechat constructor.
+     * MicroApp constructor.
      * @param array $config
      * @throws ConfigNotFoundException
      */
