@@ -22,7 +22,6 @@ class HttpClient {
     public $response = "";
 
     private function __construct(){
-        print_r(Config::get("http"));
         $this->client = new Client(Config::get("http"));
     }
 
