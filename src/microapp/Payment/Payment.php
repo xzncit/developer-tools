@@ -21,20 +21,19 @@ class Payment extends App {
      * 支付下单
      * 服务端预下单
      * @param $param [
-     *      // 必传参数
-     *      app_id=>小程序APPID
-     *      out_order_no=>开发者侧的订单号, 同一小程序下不可重复
-     *      total_amount=>支付价格; 接口中参数支付金额单位为[分]
-     *      subject=>商品描述; 长度限制 128 字节，不超过 42 个汉字
-     *      body=>商品详情
-     *      valid_time=>订单过期时间(秒); 最小 15 分钟，最大两天
-     *      sign=>开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
-     *      // 非必传参数
-     *      cp_extra=>开发者自定义字段，回调原样回传
-     *      notify_url=>商户自定义回调地址
-     *      thirdparty_id=>第三方平台服务商 id，非服务商模式留空
-     *      disable_msg=>是否屏蔽担保支付的推送消息，1-屏蔽 0-非屏蔽，接入 POI 必传
-     *      msg_page=>担保支付消息跳转页
+        字段名             类型      是否必传                字段描述
+        app_id          string       是                  小程序APPID
+        out_order_no    string       是                  开发者侧的订单号, 同一小程序下不可重复
+        total_amount    number       是                  支付价格; 接口中参数支付金额单位为[分]
+        subject         string       是                  商品描述; 长度限制 128 字节，不超过 42 个汉字
+        body            string       是                  商品详情
+        valid_time      number       是                  订单过期时间(秒); 最小 15 分钟，最大两天
+        sign            string       是                  开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
+        cp_extra        string       否                  开发者自定义字段，回调原样回传
+        notify_url      string       否                  商户自定义回调地址
+        thirdparty_id   string       否 服务商模式接入必传  第三方平台服务商 id，非服务商模式留空
+        disable_msg     number       否                  是否屏蔽担保支付的推送消息，1-屏蔽 0-非屏蔽，接入 POI 必传
+        msg_page        string       否                  担保支付消息跳转页
      * ]
      * @return array
      * @throws \Exception
@@ -157,10 +156,11 @@ class Payment extends App {
      * 2. 使用 md5 算法对该字符串计算摘要，作为结果
      * 3. 参与加签的字段均以 POST 请求中的 body 内容为准, 不考虑参数默认值等规则. 对于对象类型与数组类型的参数, 使用 POST 中的字符串原串进行左右去除空格后进行加签
      * 4. 如有其他安全性需要, 可以在请求中添加 nonce 字段, 该字段无任何业务影响, 仅影响加签内容, 使同一请求的多次签名不同.
-     * @param $map
+     * @param array $map
+     * @param string $salt
      * @return string
      */
-    public function sign($map) {
+    public function sign($map,$salt="") {
         $rList = array();
         foreach($map as $k =>$v) {
             if ($k == "other_settle_params" || $k == "app_id" || $k == "sign" || $k == "thirdparty_id")
@@ -175,7 +175,7 @@ class Payment extends App {
             array_push($rList, $value);
         }
 
-        array_push($rList, "your_payment_salt");
+        array_push($rList, $salt);
         sort($rList, 2);
         return md5(implode('&', $rList));
     }
