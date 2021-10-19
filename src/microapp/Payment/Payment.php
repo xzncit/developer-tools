@@ -150,6 +150,19 @@ class Payment extends App {
     }
 
     /**
+     * 支付设置校验
+     *
+     * @param $token
+     * @param $timestamp
+     * @param $msg
+     * @param $nonce
+     * @return string
+     */
+    public function responSign($token,$timestamp,$msg,$nonce){
+        return sha1($msg.$nonce.$timestamp.$token);
+    }
+
+    /**
      * 请求签名算法
      * 发往小程序服务端的请求，在没有特殊说明时，均需要使用担保支付秘钥进行签名，由于保证请求的来源：
      * 1. sign, app_id , thirdparty_id 字段用于标识身份字段，不参与签名。将其他字段内容（不包含 key）与支付 SALT 一起进行字典序排序后，使用&符号链接
