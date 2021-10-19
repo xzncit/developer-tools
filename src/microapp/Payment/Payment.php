@@ -44,18 +44,17 @@ class Payment extends App {
 
     /**
      * 订单查询
-     * @param $app_id           小程序APPID
-     * @param $out_order_no     开发者侧的订单号, 同一小程序下不可重复
-     * @param $sign             开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
-     * @param $thirdparty_id    第三方平台服务商 id，非服务商模式留空
+     * @param $params [
+     *      app_id           小程序APPID
+     *      out_order_no     开发者侧的订单号, 同一小程序下不可重复
+     *      sign             开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
+     *      thirdparty_id    第三方平台服务商 id，非服务商模式留空
+     * ]
      * @return array
      * @throws \Exception
      */
-    public function query($app_id,$out_order_no,$sign,$thirdparty_id){
-        return HttpClient::create()->postJson("api/apps/ecpay/v1/query_order",[
-            "app_id"=>$app_id,"out_order_no"=>$out_order_no,
-            "sign"=>$sign,"thirdparty_id"=>$thirdparty_id
-        ])->toArray();
+    public function query($params){
+        return HttpClient::create()->postJson("api/apps/ecpay/v1/query_order",$params)->toArray();
     }
 
     /**
@@ -65,8 +64,8 @@ class Payment extends App {
      * 分账后退款会从账户的可提现金额中进行退款。 当可提现金额也不足退款金额时，会发生提交退款成功，但回调失败的情况。
      * 目前可提现金额没有充值渠道，为了避免出现订单无法退款的情况出现，请根据业务情况自行保留一部分可提现金额在系统中。
      * @param $params [
-     *       参数             类型  是否必传                    说明
-     *      app_id          string 是                      小程序APPID
+            参数             类型  是否必传                    说明
+            app_id          string 是                      小程序APPID
             out_order_no    string 是                      商户分配订单号，标识进行退款的订单
             out_refund_no   string 是                      商户分配退款号
             reason          string 是                      退款原因
@@ -88,24 +87,16 @@ class Payment extends App {
 
     /**
      * 查询退款
-     * @param $app_id                   小程序APPID
-     * @param $out_refund_no            开发者侧的退款号
-     * @param $sign                     开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
-     * @param string $thirdparty_id     第三方平台服务商 id，非服务商模式留空
+     * @param $params [
+           app_id                   小程序APPID
+           out_refund_no            开发者侧的退款号
+           sign                     开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
+           thirdparty_id     第三方平台服务商 id，非服务商模式留空
+     * ]
      * @return array
      * @throws \Exception
      */
-    public function queryRefund($app_id,$out_refund_no,$sign,$thirdparty_id=""){
-        $params = [
-            "app_id"=>$app_id,
-            "out_refund_no"=>$out_refund_no,
-            "sign"=>$sign
-        ];
-
-        if(!empty($thirdparty_id)){
-            $params["thirdparty_id"] = $thirdparty_id;
-        }
-
+    public function queryRefund($params){
         return HttpClient::create()->postJson("api/apps/ecpay/v1/query_refund",$params)->toArray();
     }
 
@@ -135,18 +126,17 @@ class Payment extends App {
 
     /**
      * 查询分账
-     * @param $app_id           小程序APPID
-     * @param $out_settle_no    开发者侧的分账号
-     * @param $sign             开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
-     * @param $thirdparty_id    第三方平台服务商 id，非服务商模式留空
+     * @param $params [
+     *      app_id           小程序APPID
+     *      out_settle_no    开发者侧的分账号
+     *      sign             开发者对核心字段签名, 签名方式见文档附录, 防止传输过程中出现意外
+     *      thirdparty_id    第三方平台服务商 id，非服务商模式留空
+     * ]
      * @return array
      * @throws \Exception
      */
-    public function querySettle($app_id,$out_settle_no,$sign,$thirdparty_id){
-        return HttpClient::create()->postJson("api/apps/ecpay/v1/settle",[
-            "app_id"=>$app_id,"out_settle_no"=>$out_settle_no,"sign"=>$sign,
-            "thirdparty_id"=>$thirdparty_id
-        ])->toArray();
+    public function querySettle($params){
+        return HttpClient::create()->postJson("api/apps/ecpay/v1/settle",$params)->toArray();
     }
 
     /**
