@@ -151,7 +151,7 @@ class Payment extends App {
 
     /**
      * 支付设置校验
-     *
+     * 小程序通过 GET 请求，携带以下 query 参数以如下逻辑校验请求是否来源于字节跳动小程序服务端
      * @param $token
      * @param $timestamp
      * @param $msg
@@ -206,6 +206,16 @@ class Payment extends App {
      */
     public function commission($orderAmount,$refundPrice,$price=0.006){
         return floor(($orderAmount-$refundPrice) * $price);
+    }
+
+    /**
+     * 返回通知内容
+     * @param int $errNo
+     * @param string $tips
+     * @return false|string
+     */
+    public function getNotifyReply($errNo=0,$tips="success"){
+        return json_encode(["err_no"=>$errNo,"err_tips"=>$tips]);
     }
 
 }
