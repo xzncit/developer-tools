@@ -58,7 +58,7 @@ class QRCode extends App {
      * @return array
      * @throws \Exception
      */
-    public function getUnlimited(string $scene,$page='pages/index/index',$width=430,$auto_color=false,$line_color='{"r":0,"g":0,"b":0}',$is_hyaline=false){
+    public function getUnlimited(string $scene,$page='pages/index/index',$width=430,$auto_color=false,$line_color=["r"=>0,"g"=>0,"b"=>0],$is_hyaline=false){
         return HttpClient::create()->postJson("wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN",[
             "scene"=>$scene,"page"=>$page,"width"=>$width,"auto_color"=>$auto_color,
             "line_color"=>$line_color,"is_hyaline"=>$is_hyaline
