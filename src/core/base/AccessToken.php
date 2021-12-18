@@ -47,7 +47,7 @@ class AccessToken {
                     "secret"=>$config["appsecret"],
                 ])->toArray();
             case "microapp":
-                $res = HttpClient::create()->get("api/apps/v2/token",[
+                $res = HttpClient::create()->postJson("api/apps/v2/token",[
                     "grant_type"=>"client_credential",
                     "appid"=>$config["appid"],
                     "secret"=>$config["appsecret"],
