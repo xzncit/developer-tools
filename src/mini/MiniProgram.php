@@ -36,6 +36,11 @@ use xzncit\core\exception\ConfigNotFoundException;
  * @property \xzncit\mini\Soter\Soter                                         $soter
  * @property \xzncit\mini\SubscribeMessage\SubscribeMessage                   $subscribe_message
  * @property \xzncit\mini\ImmediateDelivery\ImmediateDelivery                 $immediate_delivery
+ * @property \xzncit\mini\Live\Live                                           $live
+ * @property \xzncit\mini\Live\Goods\Goods                                    $goods
+ * @property \xzncit\mini\Live\LivePlayer\LivePlayer                          $live_player
+ * @property \xzncit\mini\Live\Role\Role                                      $role
+ * @property \xzncit\mini\Live\Subscribe\Subscribe                            $subscribe
  */
 class MiniProgram extends Service{
 
@@ -63,6 +68,11 @@ class MiniProgram extends Service{
         "soter"                  =>      Soter\ProviderService::class,
         "subscribe_message"      =>      SubscribeMessage\ProviderService::class,
         "immediate_delivery"     =>      ImmediateDelivery\ProviderService::class,
+        "live"                   =>      Live\ProviderService::class,
+        "goods"                  =>      Live\Goods\ProviderService::class,
+        "live_player"            =>      Live\LivePlayer\ProviderService::class,
+        "role"                   =>      Live\Role\ProviderService::class,
+        "subscribe"              =>      Live\Subscribe\ProviderService::class
     ];
 
     /**

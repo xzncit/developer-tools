@@ -46,6 +46,21 @@ class AccessToken {
                     "appid"=>$config["appid"],
                     "secret"=>$config["appsecret"],
                 ])->toArray();
+            case "qq":
+                $res = HttpClient::create()->get("api/getToken",[
+                    "grant_type"=>"client_credential",
+                    "appid"=>$config["appid"],
+                    "secret"=>$config["appsecret"],
+                ])->toArray();
+
+                if(isset($res["errcode"]) && $res["errcode"] != 0){
+                    throw new \Exception($res["errmsg"].":".$res["err_no"],0);
+                }
+
+                return [
+                    "access_token"=>$res["access_token"],
+                    "expires_in"=>$res["expires_in"]
+                ];
             case "microapp":
                 $res = HttpClient::create()->postJson("api/apps/v2/token",[
                     "grant_type"=>"client_credential",
@@ -60,7 +75,7 @@ class AccessToken {
                     ];
                 }
 
-                throw new \Exception($res["err_tips"],$res["err_no"]);
+                throw new \Exception($res["err_tips"].":".$res["err_no"],0);
         }
     }
 
