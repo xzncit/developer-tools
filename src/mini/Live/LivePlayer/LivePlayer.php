@@ -101,7 +101,7 @@ class LivePlayer extends App {
      * @return array
      * @throws \Exception
      */
-    public function abnormalConfirm($params=[]){
+    public function create($params=[]){
         return HttpClient::create()->postJson("wxaapi/broadcast/room/create?access_token=ACCESS_TOKEN",$params)->toArray();
     }
 
