@@ -41,6 +41,7 @@ use xzncit\core\exception\ConfigNotFoundException;
  * @property \xzncit\mini\Live\LivePlayer\LivePlayer                          $live_player
  * @property \xzncit\mini\Live\Role\Role                                      $role
  * @property \xzncit\mini\Live\Subscribe\Subscribe                            $subscribe
+ * @property \xzncit\mini\Face\Face                                           $face
  */
 class MiniProgram extends Service{
 
@@ -49,6 +50,7 @@ class MiniProgram extends Service{
      */
     protected $providers = [
         "oauth"                  =>      OAuth\ProviderService::class,
+        "face"                   =>      Face\ProviderService::class,
         "analysis"               =>      Analysis\ProviderService::class,
         "online"                 =>      Online\ProviderService::class,
         "plugin_manager"         =>      PluginManager\ProviderService::class,
