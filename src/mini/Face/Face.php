@@ -20,7 +20,7 @@ class Face extends App {
      * @return array
      * @throws \Exception
      */
-    public function addUserAction($verifyResult){
+    public function identify($verifyResult){
         return HttpClient::create()->postJson("cityservice/face/identify/getinfo?access_token=ACCESS_TOKEN",[
             "verifyResult"=>$verifyResult
         ])->toArray();
