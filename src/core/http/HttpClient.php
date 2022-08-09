@@ -17,7 +17,6 @@ class HttpClient {
 
     private static $instance;
     private $client;
-    private $httpConfig = [];
 
     public $options;
     public $response = "";
@@ -26,7 +25,7 @@ class HttpClient {
         $this->client = new Client($options);
     }
 
-    public static function create($options = null){
+    public static function create($options = null,$newInstance=false){
         $defaultOption = Config::get("http");
         if(!empty($options)){
             if(is_string($options)){
@@ -36,6 +35,10 @@ class HttpClient {
             }
         }else{
             $options = $defaultOption;
+        }
+
+        if($newInstance){
+            return new self($options);
         }
 
         if (!self::$instance instanceof self) {
