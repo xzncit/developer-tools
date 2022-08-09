@@ -17,17 +17,29 @@ class HttpClient {
 
     private static $instance;
     private $client;
+    private $httpConfig = [];
 
     public $options;
     public $response = "";
 
-    private function __construct(){
-        $this->client = new Client(Config::get("http"));
+    private function __construct($options=[]){
+        $this->client = new Client($options);
     }
 
-    public static function create(){
+    public static function create($options = null){
+        $defaultOption = Config::get("http");
+        if(!empty($options)){
+            if(is_string($options)){
+                $options = array_merge($defaultOption,["base_uri"=>$options]);
+            }else{
+                $options = array_merge($defaultOption,$options);
+            }
+        }else{
+            $options = $defaultOption;
+        }
+
         if (!self::$instance instanceof self) {
-            self::$instance = new self();
+            self::$instance = new self($options);
         }
 
         return self::$instance;
