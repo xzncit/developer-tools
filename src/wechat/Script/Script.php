@@ -88,6 +88,9 @@ class Script extends App {
                 'closeWindow', 'scanQRCode', 'chooseWXPay', 'openProductSpecificView',
                 'addCard', 'chooseCard', 'openCard',
             ],
+            'openTagList' => [
+                'wx-open-launch-weapp','wx-open-launch-app','wx-open-subscribe','wx-open-audio'
+            ]
         ];
     }
 
