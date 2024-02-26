@@ -52,12 +52,20 @@ class Aliyun extends App {
         list($header, $body) = explode("\r\n\r\n", $result["data"], 2);
         if ($result["code"] == 200) {
             $array = json_decode($body,true);
+            $res = $array["result"]??[];
             return [
-                "expName"=>$array["result"]["expName"],
-                "number"=>$array["result"]["number"],
-                "takeTime"=>$array["result"]["takeTime"],
-                "updateTime"=>$array["result"]["updateTime"],
-                "list"=>$array["result"]["list"],
+                "expName"=>$res["expName"], // 快递公司名称
+                "expSite"=>$res["expSite"], // 快递公司官网
+                "expPhone"=>$res["expPhone"], // 快递公司电话
+                "courier"=>$res["courier"], // 快递员 或 快递站(没有则为空)
+                "courierPhone"=>$res["courierPhone"], // 快递员电话
+                "logo"=>$res["logo"], // 快递公司LOGO
+                "number"=>$res["number"], // 快递单号
+                "takeTime"=>$res["takeTime"], // 发货到收货消耗时长 (截止最新轨迹)
+                "updateTime"=>$res["updateTime"], // 快递轨迹信息最新时间
+                "status"=>$res["deliverystatus"]??0, /* 0：快递收件(揽件)1.在途中 2.正在派件 3.已签收 4.派送失败 5.疑难件 6.退件签收  */
+                "issign"=>$res["issign"], // 是否签收
+                "list"=>$res["list"]
             ];
         } else {
             if ($result["code"] == 400 && strpos($header, "Invalid Param Location") !== false) {
