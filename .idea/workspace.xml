@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6fcb4721-8959-438b-b5ad-08b14f786d45" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/delivery/Aliyun/Aliyun.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/delivery/Aliyun/Aliyun.php" afterDir="false" />
-    </list>
+    <list default="true" id="6fcb4721-8959-438b-b5ad-08b14f786d45" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +47,9 @@
       <workItem from="1706544642278" duration="43000" />
       <workItem from="1706544696977" duration="84000" />
       <workItem from="1708915369191" duration="422000" />
+      <workItem from="1708916314053" duration="32000" />
+      <workItem from="1730528448277" duration="663000" />
+      <workItem from="1730535785165" duration="2258000" />
     </task>
     <servers />
   </component>
