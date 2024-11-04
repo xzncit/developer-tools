@@ -28,6 +28,15 @@ class Utils {
     }
 
     /**
+     * 检查是否为json
+     * @param $value
+     * @return false|int
+     */
+    public static function json($value){
+        return preg_match("/{.*}/is",$value);
+    }
+
+    /**
      * 数组KEY全部转小写
      * @param $data
      * @return array|mixed

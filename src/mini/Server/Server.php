@@ -16,6 +16,7 @@ use xzncit\core\http\Request;
 use xzncit\core\http\Response;
 use xzncit\core\message\Raw;
 use xzncit\core\Service;
+use xzncit\core\Utils;
 
 class Server extends App {
 
@@ -46,7 +47,11 @@ class Server extends App {
                         throw new \Exception($array[1], $array[0]);
                     }
 
-                    $this->receive = Response::xml2arr($array[1]);
+                    if(Utils::json($array[1])){
+                        $this->receive = json_decode($array[1],true);
+                    }else{
+                        $this->receive = Response::xml2arr($array[1]);
+                    }
                 }
                 break;
             case "GET":
