@@ -23,7 +23,7 @@ class Factory {
      * Current version of program
      * @var string
      */
-    public static $version = "0.5.8";
+    public static $version = "0.5.9";
 
     /**
      * @param $name

@@ -44,6 +44,7 @@ use xzncit\core\exception\ConfigNotFoundException;
  * @property \xzncit\mini\Face\Face                                           $face
  * @property \xzncit\mini\Server\Server                                       $server
  * @property \xzncit\mini\Shipping\Shipping                                   $shipping
+ * @property \xzncit\mini\Express\Express                                     $express
  */
 class MiniProgram extends Service{
 
@@ -78,7 +79,8 @@ class MiniProgram extends Service{
         "role"                   =>      Live\Role\ProviderService::class,
         "subscribe"              =>      Live\Subscribe\ProviderService::class,
         "server"                 =>      server\ProviderService::class,
-        "shipping"               =>      shipping\ProviderService::class
+        "shipping"               =>      shipping\ProviderService::class,
+        "express"                =>      Express\ProviderService::class
     ];
 
     /**
