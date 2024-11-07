@@ -109,4 +109,58 @@ class SubscribeMessage extends App {
         return HttpClient::create()->postJson("cgi-bin/message/subscribe/send?access_token=ACCESS_TOKEN",$array)->toArray();
     }
 
+    /**
+     * 激活与更新服务卡片
+     * @param $openid 用户身份标识符。当使用微信支付订单号作为 code 时，需要与实际支付用户一致；当通过前端获取 code 时，需要与点击 button 的用户一致。
+     * @param $notify_type 卡片id。可在文中（1.1）中查阅。
+     * @param $notify_code 动态更新令牌。获取方式可在文中（1.3或1.4）中查阅。需要注意的是，微信支付订单号从生成到可被校验存在一定的时延可能，若收到报错为 notify_code 不存在，建议在1分钟后重试。
+     * @param $content_json 卡片状态与状态相关字段，不同卡片的定义不同，可在文中（1.1中各模版定义链接）中查阅。
+     * @param $check_json 微信支付订单号验证字段。当将微信支付订单号作为 notify_code 时，在激活时需要传入
+     * @return array
+     * @throws \Exception
+     */
+    public function setUserNotify($openid,$notify_type,$notify_code,$content_json,$check_json){
+        return HttpClient::create()->postJson("wxa/set_user_notify?access_token=ACCESS_TOKEN",[
+            "openid"=>$openid,
+            "notify_type"=>$notify_type,
+            "notify_code"=>$notify_code,
+            "content_json"=>$content_json,
+            "check_json"=>$check_json
+        ])->toArray();
+    }
+
+    /**
+     * 查询服务卡片状态
+     * @param $openid 用户身份标识符
+     * @param $notify_code 动态更新令牌
+     * @param $notify_type 卡片id
+     * @return array
+     * @throws \Exception
+     */
+    public function getUserNotify($openid,$notify_code,$notify_type){
+        return HttpClient::create()->postJson("wxa/set_user_notify?access_token=ACCESS_TOKEN",[
+            "openid"=>$openid,
+            "notify_code"=>$notify_code,
+            "notify_type"=>$notify_type
+        ])->toArray();
+    }
+
+    /**
+     * 更新服务卡片扩展信息
+     * @param $openid 用户身份标识符。当使用微信支付订单号作为 code 时，需要与实际支付用户一致；当通过前端获取 code 时，需要与点击 button 的用户一致。
+     * @param $notify_type 卡片id。可在文中（1.1）中查阅。
+     * @param $notify_code 动态更新令牌。获取方式可在文中（1.3或1.4）中查阅。需要注意的是，微信支付订单号从生成到可被校验存在一定的时延可能，若收到报错为 notify_code 不存在，建议在1分钟后重试。
+     * @param $ext_json 扩展信息，不同卡片的定义不同，可在文中（1.1中各模版定义链接）中查阅。
+     * @return array
+     * @throws \Exception
+     */
+    public function setUserNotifyext($openid,$notify_type,$notify_code,$ext_json){
+        return HttpClient::create()->postJson("wxa/set_user_notify?access_token=ACCESS_TOKEN",[
+            "openid"=>$openid,
+            "notify_type"=>$notify_type,
+            "notify_code"=>$notify_code,
+            "ext_json"=>$ext_json
+        ])->toArray();
+    }
+
 }
