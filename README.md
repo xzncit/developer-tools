@@ -23,7 +23,7 @@
 
 #### 安装
 ```
-composer require "xzncit/developer-tools:^0.6.0"
+composer require "xzncit/developer-tools:^0.6.1"
 ```
 
 #### 基本使用
