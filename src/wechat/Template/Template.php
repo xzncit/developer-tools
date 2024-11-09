@@ -46,7 +46,7 @@ class Template extends App {
      * @throws \Exception
      */
     public function addTemplate($template_id_short,$keyword_name_list){
-        return HttpClient::create()->postJson("cgi-bin/template/get_industry?access_token=ACCESS_TOKEN",[
+        return HttpClient::create()->postJson("cgi-bin/template/api_add_template?access_token=ACCESS_TOKEN",[
             "template_id_short"=>$template_id_short,
             "keyword_name_list"=>$keyword_name_list
         ])->toArray();
