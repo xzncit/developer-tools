@@ -21,7 +21,7 @@ class Express extends App {
      * @throws \Exception
      */
     public function getDeliveryList(){
-        return HttpClient::create()->postJson("cgi-bin/express/delivery/open_msg/get_delivery_list?access_token=ACCESS_TOKEN")->toArray();
+        return HttpClient::create()->postJson("cgi-bin/express/delivery/open_msg/get_delivery_list?access_token=ACCESS_TOKEN","{}")->toArray();
     }
 
 }
