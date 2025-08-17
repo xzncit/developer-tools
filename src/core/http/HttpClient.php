@@ -112,6 +112,7 @@ class HttpClient {
         $array = $this->parseUrl($uri);
         $headers["Content-Type"] = "application/json";
         if(empty($params) || is_array($params)){
+            $params = empty($params) ? [] : $params;
             $params = json_encode($params,JSON_UNESCAPED_UNICODE);
         }
 
