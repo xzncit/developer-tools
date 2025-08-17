@@ -104,18 +104,22 @@ class HttpClient {
     /**
      * POST提交JSON数据方法
      * @param string $uri
-     * @param array $params
+     * @param array|string|null $params
      * @param array $headers
      * @return $this
      */
-    public function postJson($uri,array $params=[],$headers=[]){
+    public function postJson($uri,$params=null,$headers=[]){
         $array = $this->parseUrl($uri);
         $headers["Content-Type"] = "application/json";
+        if(empty($params) || is_array($params)){
+            $params = json_encode($params,JSON_UNESCAPED_UNICODE);
+        }
+
         $this->response = $this->client->request('POST',$array["path"],[
-            'headers'=>$headers,
-            'verify'=>false,
-            'query'=>$this->params($array["query"]),
-            'body'=>json_encode($params,JSON_UNESCAPED_UNICODE)
+            'headers'   => $headers,
+            'verify'    => false,
+            'query'     => $this->params($array["query"]),
+            'body'      => $params
         ]);
 
         return $this;
